@@ -4,7 +4,7 @@ int my_puts(const char *str)
 {
     long i = 0;
 
-    if (str == NULL) {
+    if (str == NULL) { 
         return EOF;
     }
 

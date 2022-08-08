@@ -1,14 +1,10 @@
 #include "my_lib.h"
+#include "test.h"
 
 int main() 
 {
-    char s1[] = "Hello ";
-    char s2[] = "world!";
-
-    my_puts(s1);
-
-    printf("%d", my_strlen(s2));
-
+    test_run();
+    return 0;
     
 
 }

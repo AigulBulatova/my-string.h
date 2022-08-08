@@ -1,10 +1,11 @@
 #include <string.h>
-#include "my_lib.cpp"
+#include "my_lib.h"
+#include "test.h"
 
-int test ()
+void test_run(void)
 {
     char str1[] = "Testing ";
-    char str2[] = "program";
+    char str2[] = "program"; 
 
     int failed_tests = test(str1, str2);
     if (failed_tests == 0) {
@@ -25,21 +26,21 @@ int test(char *str1, char *str2)
 
     //strlen
     if(my_strlen(str1) != strlen(str1)) {
-        printf("Error in my_strlen(). Received value is %d instead of %d\n",
+        printf("Error in my_strlen(). Received value is %ld instead of %ld\n",
                 my_strlen(str1), strlen(str1));
+        failed_tests++;
     }
-    failed_tests++;
 
     //strcpy
-    char s1[], s2[];
+    char s1[10], s2[10];
 
     my_strcpy(s1, str1);
     strcpy(s2, str2);
 
     if (strcmp(s1, s2)) {
         printf("Error in my_strcpy().\n");
+        failed_tests++;
     }
-    failed_tests++;
 
     //strncpy
     int count = 8;
@@ -48,8 +49,8 @@ int test(char *str1, char *str2)
 
     if (strcmp(s1, s2)) {
         printf("Error in my_strncpy().\n");
+        failed_tests++;
     }
-    failed_tests++;
 
     //strcat
     strcpy(s1, str1);
@@ -60,20 +61,20 @@ int test(char *str1, char *str2)
 
     if (strcmp(s1, s2)) {
         printf("Error in my_strcat().\n");
+        failed_tests++;
     }
-    failed_tests++;
 
     //strncat
     strcpy(s1, str1);
     strcpy(s2, str1);
 
-    my_strncat(s1, str2);
-    strcat(s2, str2);
+    my_strncat(s1, str2, count);
+    strncat(s2, str2, count);
 
     if (strcmp(s1, s2)) {
         printf("Error in my_strcat().\n");
+        failed_tests++;
     }
-    failed_tests++;
 
     //fgets
 
@@ -83,8 +84,8 @@ int test(char *str1, char *str2)
 
     if (strcmp(p_s1, p_s2)) {
         printf("Error in my_strdup().\n");
+        failed_tests++;
     }
-    failed_tests++;
 
     //strchr
     int ch1 = 'a';
@@ -101,6 +102,7 @@ int test(char *str1, char *str2)
         else {
             putchar(ch2);
         } 
+        failed_tests++;
         printf("\n");
     }
     

@@ -1,2 +1,4 @@
 main
 my_lib.o
+test.o
+main.o
