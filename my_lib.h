@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MY_LIB_H 
+#define MY_LIB_H
+
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -12,3 +14,5 @@ char *my_strncat(char *dest, const char *src, int count);
 char *my_fgets(char* str, int count, FILE* stream);
 char *my_strdup(const char *src);
 const char *my_strchr(const char* str, int ch);
+
+#endif

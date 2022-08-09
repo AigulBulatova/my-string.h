@@ -1,5 +1,5 @@
-#include "my_lib.h"
 #include "test.h"
+#include "my_lib.h"
 
 int main() 
 {

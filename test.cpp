@@ -8,6 +8,7 @@ void test_run(void)
     char str2[] = "program"; 
 
     int failed_tests = 0;
+
     test_puts(str1);
     test_strcpy(str1, str2, &failed_tests);
     test_strlen(str1, &failed_tests);
@@ -63,7 +64,7 @@ void test_strcpy(char *str1, char *str2, int *failed_tests)
         *failed_tests++;
     }
     else {
-        printf("Test is OK.\n\n");
+        printf("Test passed.\n\n");
     }
 
     free(s1);
@@ -82,7 +83,7 @@ void test_strlen(char *str1, int *failed_tests)
         *failed_tests++;
     }
     else {
-        printf("Test is OK.\n\n");
+        printf("Test passed.\n\n");
     }
 }
 
@@ -111,7 +112,7 @@ void test_strncpy(char *str1, char *str2, int *failed_tests)
         *failed_tests++;
     }
     else {
-        printf("Test is OK.\n\n");
+        printf("Test passed.\n\n");
     }
 
     free(s1);
@@ -141,7 +142,7 @@ void test_strcat(char *str1, char *str2, int *failed_tests)
         *failed_tests++;
     }
     else {
-        printf("Test is OK.\n\n");
+        printf("Test passed.\n\n");
     }
 
     free(s1);
@@ -172,7 +173,7 @@ void test_strncat(char *str1, char *str2, int *failed_tests)
         *failed_tests++;
     }
     else {
-        printf("Test is OK.\n\n");
+        printf("Test passed.\n\n");
     }
 
     free(s1);
@@ -199,7 +200,7 @@ void test_strdup(char *str1, char *str2, int *failed_tests)
         *failed_tests++;
     }
     else {
-        printf("Test is OK.\n\n");
+        printf("Test passed.\n\n");
     }
 
 }
@@ -225,5 +226,8 @@ void test_strchr(char *str2, int *failed_tests)
         } 
         printf("\n");
         *failed_tests++;
+    }
+    else {
+        printf("Test passed.\n\n");
     }
 }
