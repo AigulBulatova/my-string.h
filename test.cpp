@@ -7,7 +7,16 @@ void test_run(void)
     char str1[] = "Testing ";
     char str2[] = "program"; 
 
-    int failed_tests = test(str1, str2);
+    int failed_tests = 0;
+    test_puts(str1);
+    test_strcpy(str1, str2, &failed_tests);
+    test_strlen(str1, &failed_tests);
+    test_strncpy(str1, str2, &failed_tests);
+    test_strcat(str1, str2, &failed_tests);
+    test_strncat(str1, str2, &failed_tests);
+    test_strdup(str1, str2, &failed_tests);
+    test_strchr(str2, &failed_tests);
+
     if (failed_tests == 0) {
         printf("All tests passed successfully.\n");
     }
@@ -16,78 +25,190 @@ void test_run(void)
     }
 }
 
-int test(char *str1, char *str2)
+//------------------------------------------------------------------
+
+void test_puts(char *str1)
 {
-    int failed_tests = 0;
-
-    //puts
+    printf("Test of my_puts():\n");
+    
+    printf("String received with my_puts(): ");
     my_puts(str1);
+    printf("String received with puts(): ");
     puts(str1);
+    printf("\n");
 
-    //strlen
-    if(my_strlen(str1) != strlen(str1)) {
-        printf("Error in my_strlen(). Received value is %ld instead of %ld\n",
-                my_strlen(str1), strlen(str1));
-        failed_tests++;
-    }
+}
 
-    //strcpy
-    char s1[10], s2[10];
+//------------------------------------------------------------------
 
-    my_strcpy(s1, str1);
+void test_strcpy(char *str1, char *str2, int *failed_tests)
+{
+    char *s1 = strdup(str1);
+    char *s2 = strdup(str1);
+
+    printf("Test of my_strcpy():\n");
+
+    my_strcpy(s1, str2);
     strcpy(s2, str2);
 
     if (strcmp(s1, s2)) {
         printf("Error in my_strcpy().\n");
-        failed_tests++;
+
+        printf("String received with my_strcpy(): ");
+        puts(s1);
+        printf("String received with strcpy(): ");
+        puts(s2);
+        printf("\n\n");
+
+        *failed_tests++;
+    }
+    else {
+        printf("Test is OK.\n\n");
     }
 
-    //strncpy
+    free(s1);
+    free(s2);
+}
+
+//------------------------------------------------------------------
+
+void test_strlen(char *str1, int *failed_tests) 
+{
+    printf("Test of my_strlen():\n");
+    if(my_strlen(str1) != strlen(str1)) {
+        printf("Error in my_strlen(). Received value is %ld instead of %ld\n\n",
+                my_strlen(str1), strlen(str1));
+
+        *failed_tests++;
+    }
+    else {
+        printf("Test is OK.\n\n");
+    }
+}
+
+//------------------------------------------------------------------
+
+void test_strncpy(char *str1, char *str2, int *failed_tests)
+{
+    char *s1 = strdup(str1);
+    char *s2 = strdup(str1);
+
+    printf("Test of my_strncpy():\n");
+
     int count = 8;
     my_strncpy(s1, str2, count);
     strncpy(s2, str2, count);
 
     if (strcmp(s1, s2)) {
         printf("Error in my_strncpy().\n");
-        failed_tests++;
+
+        printf("String received with my_strncpy(): ");
+        puts(s1);
+        printf("String received with strncpy(): ");
+        puts(s2);
+        printf("\n\n");
+
+        *failed_tests++;
+    }
+    else {
+        printf("Test is OK.\n\n");
     }
 
-    //strcat
-    strcpy(s1, str1);
-    strcpy(s2, str1);
+    free(s1);
+    free(s2);
+}
+
+//------------------------------------------------------------------
+
+void test_strcat(char *str1, char *str2, int *failed_tests)
+{
+    printf("Test of my_strcat():\n");
+    char *s1 = strdup(str1);
+    char *s2 = strdup(str1);
 
     my_strcat(s1, str2);
     strcat(s2, str2);
-
+    
     if (strcmp(s1, s2)) {
         printf("Error in my_strcat().\n");
-        failed_tests++;
+
+        printf("String received with my_strcat(): ");
+        puts(s1);
+        printf("String received with strcat(): ");
+        puts(s2);
+        printf("\n\n");
+
+        *failed_tests++;
+    }
+    else {
+        printf("Test is OK.\n\n");
     }
 
-    //strncat
-    strcpy(s1, str1);
-    strcpy(s2, str1);
+    free(s1);
+    free(s2);
+}
+
+//------------------------------------------------------------------
+
+void test_strncat(char *str1, char *str2, int *failed_tests)
+{
+    printf("Test of my_strncat():\n");
+    char *s1 = strdup(str1);
+    char *s2 = strdup(str1);
+    int count = 8;
 
     my_strncat(s1, str2, count);
     strncat(s2, str2, count);
-
+    
     if (strcmp(s1, s2)) {
-        printf("Error in my_strcat().\n");
-        failed_tests++;
+        printf("Error in my_strncat().\n");
+
+        printf("String received with my_strncat(): ");
+        puts(s1);
+        printf("String received with strncat(): ");
+        puts(s2);
+        printf("\n\n");
+
+        *failed_tests++;
+    }
+    else {
+        printf("Test is OK.\n\n");
     }
 
-    //fgets
+    free(s1);
+    free(s2);
+}
 
-    //strdup
+//------------------------------------------------------------------
+
+void test_strdup(char *str1, char *str2, int *failed_tests)
+{
+    printf("Test of my_strdup():\n");
     char *p_s1 = my_strdup(str1);
-    char *p_s2 = strdup(str1);
+    char *p_s2 = strdup(str1); 
 
     if (strcmp(p_s1, p_s2)) {
         printf("Error in my_strdup().\n");
-        failed_tests++;
+
+        printf("String received with my_strdup(): ");
+        puts(p_s1);
+        printf("String received with strdup(): ");
+        puts(p_s2);
+        printf("\n\n");
+
+        *failed_tests++;
+    }
+    else {
+        printf("Test is OK.\n\n");
     }
 
-    //strchr
+}
+
+//------------------------------------------------------------------
+
+void test_strchr(char *str2, int *failed_tests)
+{
+    printf("Test of my_strchr():\n");
     int ch1 = 'a';
     int ch2 = 'h';
 
@@ -102,9 +223,7 @@ int test(char *str1, char *str2)
         else {
             putchar(ch2);
         } 
-        failed_tests++;
         printf("\n");
+        *failed_tests++;
     }
-    
-    return failed_tests;
 }
