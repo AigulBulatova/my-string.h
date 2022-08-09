@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <assert.h>
 
 int my_puts(const char *str);
 size_t my_strlen(const char *str);

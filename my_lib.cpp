@@ -22,6 +22,8 @@ int my_puts(const char *str)
 
 size_t my_strlen(const char *str)
 {
+    assert(str);
+
     size_t len = 0;
 
     while (str[len] != '\0') {
@@ -35,6 +37,9 @@ size_t my_strlen(const char *str)
 
 char* my_strcpy(char* dest, const char* src)
 {
+    assert(dest);
+    assert(src);
+
     long i = 0;
 
     while (src[i] != '\0') {
@@ -50,6 +55,9 @@ char* my_strcpy(char* dest, const char* src)
 
 char *my_strncpy(char *dest, const char *src, int count)
 {
+    assert(dest);
+    assert(src);
+
     long i = 0;
 
     for (i; i < count && src[i] != '\0'; i++) {
@@ -68,6 +76,9 @@ char *my_strncpy(char *dest, const char *src, int count)
 
 char *my_strcat(char *dest, const char *src) 
 {
+    assert(dest);
+    assert(src);
+
     size_t len = my_strlen(dest);
     long i = 0;
 
@@ -83,6 +94,9 @@ char *my_strcat(char *dest, const char *src)
 
 char *my_strncat(char *dest, const char *src, int count)
 {
+    assert(dest);
+    assert(src);
+
     size_t len = my_strlen(dest);
     long i = 0;
 
@@ -98,6 +112,9 @@ char *my_strncat(char *dest, const char *src, int count)
 
 char *my_fgets(char* str, int count, FILE* stream)
 {
+    assert(str);
+    assert(stream);
+
     long i = 0;
 
     for (i; i < count; i++) {
@@ -118,6 +135,8 @@ char *my_fgets(char* str, int count, FILE* stream)
 
 char *my_strdup(const char *src)
 {
+    assert(src);
+
     size_t len = my_strlen(src);
     char *p = (char *) malloc(len + 1);
     long i = 0;
@@ -137,6 +156,8 @@ char *my_strdup(const char *src)
 
 const char *my_strchr(const char* str, int ch) 
 {
+    assert(str);
+    
     long i = 0;
     for (i; str[i]; i++) {
 
