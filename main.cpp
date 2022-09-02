@@ -1,8 +1,10 @@
-#include "test.h"
-#include "my_lib.h"
+#include "test/test.h"
+#include "lib/my_lib.h"
 
-int main() 
+// strlen 
+
+int main () 
 {
-    test_run();
+    test_run ();
     return 0;
 }

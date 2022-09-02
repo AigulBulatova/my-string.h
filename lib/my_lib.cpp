@@ -1,51 +1,49 @@
 #include "my_lib.h"
 
-int my_puts(const char *str) 
+int my_puts (const char *str) 
 {
-    long i = 0;
-
     if (str == NULL) { 
         return EOF;
     }
 
+    long i = 0;
+
     for (i; str[i] != '\0'; i++) {
-        if (putchar(str[i]) == EOF) {
+        if (putchar (str[i]) == EOF) {
             return EOF;
         }
-    }
-    putchar('\n');
+    } 
+
+    putchar ('\n');
 
     return str[i - 1];
 }
 
 //------------------------------------------------------------------
 
-size_t my_strlen(const char *str)
+size_t my_strlen (const char *str)
 {
-    assert(str);
-
     size_t len = 0;
 
-    while (str[len] != '\0') {
-        len++;
-    }
+    while (str[len++] != '\0') {;}
 
-    return len;
+    return len - 1;
+
+    // while (str[len++] != '\0');
+    // return len - 1;
 }
 
 //------------------------------------------------------------------
 
-char* my_strcpy(char* dest, const char* src)
+char* my_strcpy (char* dest, const char* src)
 {
-    assert(dest);
-    assert(src);
-
     long i = 0;
 
     while (src[i] != '\0') {
         dest[i] = src[i];
         i++;
     }
+    
     dest[i] = '\0';
 
     return dest;
@@ -53,11 +51,8 @@ char* my_strcpy(char* dest, const char* src)
 
 //------------------------------------------------------------------
 
-char *my_strncpy(char *dest, const char *src, int count)
+char *my_strncpy (char *dest, const char *src, int count)
 {
-    assert(dest);
-    assert(src);
-
     long i = 0;
 
     for (i; i < count && src[i] != '\0'; i++) {
@@ -74,12 +69,9 @@ char *my_strncpy(char *dest, const char *src, int count)
 
 //------------------------------------------------------------------
 
-char *my_strcat(char *dest, const char *src) 
+char *my_strcat (char *dest, const char *src) 
 {
-    assert(dest);
-    assert(src);
-
-    size_t len = my_strlen(dest);
+    size_t len = my_strlen (dest);
     long i = 0;
 
     for (i; src[i] != '\0'; i++) {
@@ -92,12 +84,9 @@ char *my_strcat(char *dest, const char *src)
 
 //------------------------------------------------------------------
 
-char *my_strncat(char *dest, const char *src, int count)
+char *my_strncat (char *dest, const char *src, int count)
 {
-    assert(dest);
-    assert(src);
-
-    size_t len = my_strlen(dest);
+    size_t len = my_strlen (dest);
     long i = 0;
 
     for (i; i < count && src[i] != '\0'; i++) {
@@ -110,15 +99,12 @@ char *my_strncat(char *dest, const char *src, int count)
 
 //------------------------------------------------------------------
 
-char *my_fgets(char* str, int count, FILE* stream)
+char *my_fgets (char* str, int count, FILE* stream)
 {
-    assert(str);
-    assert(stream);
-
     long i = 0;
 
     for (i; i < count; i++) {
-        int symb = getc(stream);
+        int symb = getc (stream);
 
         if (symb != '\n' && symb != EOF) {
             str[i] = symb;
@@ -128,17 +114,15 @@ char *my_fgets(char* str, int count, FILE* stream)
         }
     }
 
-    return (ferror(stream) || (i == 0 && feof(stream))) ? NULL : str;
+    return (ferror (stream) || (i == 0 && feof(stream))) ? NULL : str;
 }
 
 //------------------------------------------------------------------
 
-char *my_strdup(const char *src)
+char *my_strdup (const char *src)
 {
-    assert(src);
-
-    size_t len = my_strlen(src);
-    char *p = (char *) malloc(len + 1);
+    size_t len = my_strlen (src);
+    char *p = (char *) malloc (len + 1);
     long i = 0;
 
     if (p == NULL) {
@@ -154,10 +138,8 @@ char *my_strdup(const char *src)
 
 //------------------------------------------------------------------
 
-const char *my_strchr(const char* str, int ch) 
-{
-    assert(str);
-    
+const char *my_strchr (const char* str, int ch) 
+{  
     long i = 0;
     for (i; str[i]; i++) {
 

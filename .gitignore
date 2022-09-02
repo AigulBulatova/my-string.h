@@ -1,4 +1,2 @@
-main
-my_lib.o
-test.o
-main.o
+obj/
+my_lib
